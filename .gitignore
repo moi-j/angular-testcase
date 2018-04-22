@@ -1,0 +1,12 @@
+.DS_Store
+*.sw*
+*.pyc
+*.bak
+.ropeproject/
+.idea/
+.vagrant/
+.pycharm_helpers/
+venv
+staticfiles
+/*.log
+bootstrap-salt.sh
