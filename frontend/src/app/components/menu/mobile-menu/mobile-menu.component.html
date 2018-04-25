@@ -1,0 +1,16 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngIf="!userAdmin; else isLogged" (click)="signIn()">
+    <mat-icon>input</mat-icon>
+    <span>Sign in with Google</span>
+  </button>
+  <ng-template #isLogged>
+    <button mat-menu-item (click)="signOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign Out</span>
+    </button>
+  </ng-template>
+</mat-menu>

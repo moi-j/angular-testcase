@@ -1,16 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  GoogleLoginProvider,
-} from "angular5-social-login";
-
-import { AppComponent } from './app.component';
+import { AuthServiceConfig, GoogleLoginProvider } from "angular5-social-login";
 import { AppRoutingModule } from "./app-routing.module";
-import {environment} from "../environments/environment";
-import {MaterialModule} from "./modules/material.module";
+import { HttpClientModule} from "@angular/common/http";
+import { MenuModule } from "./components/menu/menu.module";
+
+// Components
+import { AppComponent } from './app.component';
+
+//Providers
+import { httpInterceptorProviders } from "./http-interceptors/interceptors";
+
+// Environment vars
+import { environment } from "../environments/environment";
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -29,8 +31,8 @@ export function getAuthServiceConfigs() {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule,
-    MaterialModule
+    HttpClientModule,
+    MenuModule
   ],
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ export function getAuthServiceConfigs() {
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

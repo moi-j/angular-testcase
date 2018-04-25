@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  AuthService,
-  GoogleLoginProvider
-} from 'angular5-social-login';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +6,8 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public title: string = 'Title'
+  public title: string = 'Angular Test App'
 
-  constructor( private socialAuthService: AuthService ) {}
+  constructor( ) {}
 
-  public socialSignIn() {
-
-    let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(userData);
-        // Now sign-in with userData
-      }
-    );
-  }
 }
