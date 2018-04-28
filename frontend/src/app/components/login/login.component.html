@@ -1,0 +1,4 @@
+<button mat-button (click)="socialSignIn()" *ngIf="!userAdmin; else singOut">Sign in with Google</button>
+<ng-template #singOut>
+  <button mat-button (click)="socialSignOut()">Sign out</button>
+</ng-template>
