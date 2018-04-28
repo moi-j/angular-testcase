@@ -16,9 +16,6 @@ export class MobileMenuComponent implements OnInit {
 
   constructor() {}
 
-  public signIn() {
-    this.onSignIn.emit();
-  }
   public signOut() {
     this.onSignOut.emit();
   }

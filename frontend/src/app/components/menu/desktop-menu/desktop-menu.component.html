@@ -1,4 +1,11 @@
-<button mat-button (click)="signIn()" *ngIf="!userAdmin; else singOut">Sign in with Google</button>
-<ng-template #singOut>
-  <button mat-button (click)="signOut()">Sign out</button>
+<button mat-button routerLink="/login" *ngIf="!userAdmin; else isLogged" routerLinkActive="activeButton">Sign in</button>
+<ng-template #isLogged>
+  <button mat-button routerLink="admin" routerLinkActive="activeButton">
+    <mat-icon>people</mat-icon>
+    <span>My users</span>
+  </button>
+  <button mat-button (click)="signOut()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Sign out</span>
+  </button>
 </ng-template>

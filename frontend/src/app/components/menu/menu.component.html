@@ -1,17 +1,24 @@
-<mat-toolbar fxLayoutAlign="end center">
-  <app-desktop-menu
-    fxShow.gt-xs="true"
-    fxShow.xs="false"
-    (onSignIn)="socialSignIn()"
-    (onSignOut)="socialSignOut()"
-    [userAdmin]="_admin.user"
-  ></app-desktop-menu>
-  <app-mobile-menu
-    fxShow.xs="true"
-    fxShow.gt-xs="false"
-    (onSignIn)="socialSignIn()"
-    (onSignOut)="socialSignOut()"
-    [userAdmin]="_admin.user"
-  ></app-mobile-menu>
-  <div *ngIf="_admin.user?.image" [ngStyle]="{'background-image': 'url(' + _admin.user.image + ')'}" id="userImage"></div>
+<mat-toolbar fxLayoutAlign="space-between center" color="primary">
+  <button mat-icon-button routerLink="/" routerLinkActive="activeHome" [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon>
+      home
+    </mat-icon>
+  </button>
+  <div class="inline-flex">
+    <app-desktop-menu
+      fxShow.gt-xs="true"
+      fxShow.xs="false"
+      (onSignIn)="socialSignIn()"
+      (onSignOut)="socialSignOut()"
+      [userAdmin]="admin.user"
+    ></app-desktop-menu>
+    <app-mobile-menu
+      fxShow.xs="true"
+      fxShow.gt-xs="false"
+      (onSignIn)="socialSignIn()"
+      (onSignOut)="socialSignOut()"
+      [userAdmin]="admin.user"
+    ></app-mobile-menu>
+    <div *ngIf="admin.user?.image" [ngStyle]="{'background-image': 'url(' + admin.user.image + ')'}" id="userImage"></div>
+  </div>
 </mat-toolbar>

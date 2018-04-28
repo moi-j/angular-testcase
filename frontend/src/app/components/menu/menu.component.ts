@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from "../../services/admin.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-menu',
@@ -8,16 +9,16 @@ import {AdminService} from "../../services/admin.service";
 })
 export class MenuComponent implements OnInit {
 
-  constructor( private _admin: AdminService ) {}
+  constructor(
+    private admin: AdminService,
+    private user: UserService
+  ) {}
 
-  public socialSignIn() {
-    this._admin.socialSignIn();
-  }
   public socialSignOut() {
-    this._admin.socialSignOut();
+    this.admin.socialSignOut();
   }
 
   ngOnInit() {
-  }
 
+  }
 }

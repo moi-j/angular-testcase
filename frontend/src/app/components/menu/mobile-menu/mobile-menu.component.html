@@ -3,11 +3,20 @@
 </button>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item *ngIf="!userAdmin; else isLogged" (click)="signIn()">
+  <button
+    mat-menu-item
+    routerLink="/login"
+    routerLinkActive="activeButton"
+    *ngIf="!userAdmin; else isLogged"
+  >
     <mat-icon>input</mat-icon>
-    <span>Sign in with Google</span>
+    <span>Sign in</span>
   </button>
   <ng-template #isLogged>
+    <button mat-menu-item routerLink="admin" routerLinkActive="activeButton">
+      <mat-icon>people</mat-icon>
+      <span>My users</span>
+    </button>
     <button mat-menu-item (click)="signOut()">
       <mat-icon>exit_to_app</mat-icon>
       <span>Sign Out</span>

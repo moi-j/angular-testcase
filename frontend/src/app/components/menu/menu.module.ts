@@ -10,11 +10,13 @@ import {MenuComponent} from "./menu.component";
 import {AdminService} from "../../services/admin.service";
 import { DesktopMenuComponent } from './desktop-menu/desktop-menu.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     MaterialModule,
     SocialLoginModule
   ],

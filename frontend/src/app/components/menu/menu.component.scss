@@ -1,7 +1,15 @@
 #userImage {
-  width: 50px;
-  height: 50px;
+  width: 41px;
+  height: 41px;
   border-radius: 50%;
   background-size: cover;
   margin-left: 2px;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.activeHome {
+  background: rgba(0, 0, 0, 0.2);
 }
