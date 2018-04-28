@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  google_client_id: '305451719406-a3c65fa4ki0u8njcqvtrcldcsd8js4ks.apps.googleusercontent.com'
+  google_client_id: '396519560792-flahmhsg3n40gk0nnil821q7ma7rkca8.apps.googleusercontent.com',
 };
+
+export var apiUrl = 'https://angular-testcase.herokuapp.com/api/users';
