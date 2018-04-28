@@ -13,6 +13,11 @@ import { httpInterceptorProviders } from "./http-interceptors/interceptors";
 
 // Environment vars
 import { environment } from "../environments/environment";
+import { AuthGuard } from "./guards/auth-guard.service";
+import {MaterialModule} from "./modules/material.module";
+import {UserService} from "./services/user.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HomeComponent } from './components/home/home.component';
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -30,12 +35,15 @@ export function getAuthServiceConfigs() {
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    MaterialModule,
     MenuModule
   ],
   declarations: [
     AppComponent,
+    HomeComponent
   ],
   providers: [
     {
@@ -43,6 +51,8 @@ export function getAuthServiceConfigs() {
       useFactory: getAuthServiceConfigs
     },
     httpInterceptorProviders,
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
