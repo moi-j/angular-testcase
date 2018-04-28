@@ -1,0 +1,33 @@
+<!--<button-->
+  <!--mat-button-->
+  <!--(click)="getUsers()"-->
+<!--&gt;-->
+  <!--Prueba-->
+<!--</button>-->
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- First Name Column -->
+    <ng-container matColumnDef="first_name">
+      <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.first_name}} </mat-cell>
+    </ng-container>
+
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="last_name">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.last_name}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
