@@ -26,6 +26,16 @@ Setup
 * Implement the frontend against the API
 * Extend the readme on how to build and run the frontend, the frontend webserver should run on port 8001 (http://angular-test.rh-dev.eu:8001)
 
+Alternative Setup
+================= 
+
+If you don't want/can to run the application in the virtual machine, just use the instance deployed on Heroku: `https://angular-testcase.herokuapp.com/api/users`
+* Google OAuth client id to be used: `396519560792-flahmhsg3n40gk0nnil821q7ma7rkca8.apps.googleusercontent.com`
+* Authorized JavaScript origins: `http://localhost:9000`
+* Authorized redirect URIs: 
+  * `http://localhost:9000`
+  * `http://localhost:9000/oauth2callback`
+
 Authorization
 =============
 
@@ -39,3 +49,17 @@ API endpoints
 The API provides GET, PUT, POST, PATCH, DELETE and OPTIONS to manage all user related needs
 
 http://angular-test.rh-dev.eu:8000/api/users to list and http://angular-test.rh-dev.eu:8000/api/users/{id} to manage single users
+
+Frontend
+========
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+
+## Development Frontend server
+Under `/frontend` run `npm install` and It will install all required dependencies for the project.
+Once installed run `npm serve` and server will be running in `http://localhost:9000`. You can also run `ng serve --port 9000` and will get the same result. 
+The app will automatically reload if you change any of the source files.
+
+## Connecting with the API
+The default app is connecting to the heroku deployed server, that means it is using the OAuth client id referenced under [alternative setup](#alternative-setup).
+You can change it in enviroment files under `/enviroments`
