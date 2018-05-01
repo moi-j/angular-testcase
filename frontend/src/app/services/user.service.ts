@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
-import {apiUrl} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import { apiUrl } from "../../environments/environment";
+import { HttpClient } from "@angular/common/http";
 
 import {User} from "../interfaces/user";
-import {users} from "../interfaces/users.mok";
 
 @Injectable()
 export class UserService {
 
+  public users: User[];
+
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   public getUsers() {
-    // let user = {
-    //   first_name: 'Name',
-    //   last_name: 'lastName',
-    //   iban: 'DE12323123123'
-    // }
-    // return this.http.post( apiUrl, user );
-    return this.http.get( apiUrl );
-    // return users;
+    return this.http.get<User[]>( apiUrl );
   }
 
   public getUser( user: User ) {
-    return this.http.get( `${apiUrl}/${user.id}` );
+    return this.http.get<User>( `${apiUrl}/${user.id}` );
   }
 
   public createUser( user: User) {
-    return this.http.post( apiUrl, user );
+    return this.http.post<User>( apiUrl, user );
   }
 
   public updateUser ( user: User) {
@@ -38,4 +33,5 @@ export class UserService {
   public deleteUser ( user: User ) {
     return this.http.delete( `${apiUrl}/${user.id}` );
   }
+
 }
