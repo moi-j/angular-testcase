@@ -1,4 +1,15 @@
-<p>
-  home works!
-</p>
+<div *ngIf="userList.numberOfUsers > 0; else noUsers" fxLayoutAlign="end center" id="header">
+ <p>
+   Showing {{userList.numberOfUsers}} users
+ </p>
+</div>
 <app-users-list [onlyOwn]="false"></app-users-list>
+
+<ng-template #noUsers>
+  <div fxLayoutAlign="center center" *ngIf="!userList.isLoading">
+    <p>
+      There is no users in the App.
+      <a routerLink="/admin">Start by adding one!</a>
+    </p>
+  </div>
+</ng-template>
