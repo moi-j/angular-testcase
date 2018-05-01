@@ -22,6 +22,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   @Input() onlyOwn: boolean;
 
   public isLoading: boolean;
+  public numberOfUsers:number;
   displayedColumns = ['first_name', 'last_name', 'actions'];
   dataSource;
 
@@ -41,6 +42,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   getData(){
     this.isLoading = true;
     this._user.getUsers().pipe(takeUntil(this.destroy$)).subscribe( users => {
+      this.numberOfUsers = users.length;
       this.setAndFilterTableData(users);
       this.isLoading = false;
     }, err => {
