@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$config: mat-typography-config();
+
+
 body {
+  font-family: mat-font-family($config);
   margin: 0;
   padding: 0;
 }
