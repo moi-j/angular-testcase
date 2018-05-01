@@ -16,7 +16,6 @@ import { ReactiveFormsModule } from "@angular/forms";
     AdminRoutingModule,
     MaterialModule,
     MatDialogModule,
-
   ],
   declarations: [
     AdminComponent,
