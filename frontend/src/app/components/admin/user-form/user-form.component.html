@@ -6,6 +6,19 @@
     You are updating user {{user.first_name}}
   </h3>
 </ng-template>
+
+<div *ngIf="serverErrorTypes">
+  <ng-container *ngFor="let errorType of serverErrorTypes">
+    <ul>
+      <li>{{errorType}}</li>
+      <ul>
+        <li *ngFor="let error of serverErrors[errorType]">{{error}}</li>
+      </ul>
+    </ul>
+  </ng-container>
+
+</div>
+
 <form [formGroup]="userForm" fxLayout="column" fxLayoutAlign="space-between center">
   <mat-form-field>
     <input matInput
@@ -18,13 +31,16 @@
   </mat-form-field>
 
   <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)"
-       class="alert alert-danger">
+       class="error-messages">
 
-    <div *ngIf="first_name?.errors?.required">
+    <div *ngIf="first_name.errors.required">
      First name is required.
     </div>
-    <div *ngIf="first_name?.errors?.minlength">
-      First name must be at least 4 characters long.
+    <div *ngIf="first_name.errors.minlength">
+      First name must be at least 2 characters long.
+    </div>
+    <div *ngIf="first_name.errors.onlyLetters">
+      First name can only have letters.
     </div>
   </div>
 
@@ -39,13 +55,16 @@
   </mat-form-field>
 
   <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)"
-       class="alert alert-danger">
+       class="error-messages">
 
-    <div *ngIf="last_name?.errors?.required">
+    <div *ngIf="last_name.errors.required">
       Last name is required.
     </div>
-    <div *ngIf="last_name?.errors?.minlength">
-      Last name must be at least 4 characters long.
+    <div *ngIf="last_name.errors.minlength">
+      Last name must be at least 2 characters long.
+    </div>
+    <div *ngIf="last_name.errors.onlyLetters">
+      Last name can only have letters.
     </div>
   </div>
 
@@ -61,22 +80,26 @@
 
 
   <div *ngIf="iban.invalid && (iban.dirty || iban.touched)"
-       class="alert alert-danger">
-
-    <div *ngIf="iban?.errors?.required">
+       class="error-messages">
+    <div *ngIf="iban.errors.required">
       IBAN is required.
     </div>
-    <div *ngIf="iban?.errors?.wrongIban">
-      Iban is not valid.
+    <div *ngIf="iban.errors.wrongIban">
+      {{iban.errors.wrongIban.message}}
+    </div>
+    <div *ngIf="iban.errors.wrongLength">
+      The IBAN for {{iban.errors.wrongLength.code}} should be {{iban.errors.wrongLength.codeValue}} long
     </div>
   </div>
 
+
   <div class="formRow">
-    <button mat-icon-button>
+    <button mat-icon-button [disabled]="!userForm.valid" (click)="onSubmit()">
       <mat-icon>save</mat-icon>
     </button>
     <button mat-icon-button (click)="dialogRef.close()">
       <mat-icon>cancel</mat-icon>
     </button>
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   </div>
 </form>
