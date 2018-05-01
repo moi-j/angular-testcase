@@ -46,7 +46,7 @@ export class TokenInterceptor implements HttpInterceptor {
   errorHandler(error){
     switch (error.status) {
       case 401:
-        let snackbarRef = this.snackBar.open(
+        this.snackBar.open(
           'Your session has expired. Please, login again to continue',
           'Ok').afterDismissed().subscribe(()=>{
             this._admin.socialSignOut();
