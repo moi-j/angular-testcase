@@ -8,14 +8,12 @@
     <app-desktop-menu
       fxShow.gt-xs="true"
       fxShow.xs="false"
-      (onSignIn)="socialSignIn()"
       (onSignOut)="socialSignOut()"
       [userAdmin]="admin.user"
     ></app-desktop-menu>
     <app-mobile-menu
       fxShow.xs="true"
       fxShow.gt-xs="false"
-      (onSignIn)="socialSignIn()"
       (onSignOut)="socialSignOut()"
       [userAdmin]="admin.user"
     ></app-mobile-menu>
