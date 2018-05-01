@@ -2,16 +2,26 @@ import { Injectable } from '@angular/core';
 import {
   HttpInterceptor,
   HttpRequest,
-  HttpHandler,
+  HttpHandler, HttpEvent, HttpErrorResponse,
 } from '@angular/common/http';
 
 import {AdminService} from "../services/admin.service";
+import {pipe} from "rxjs/Rx";
+import {tap} from "rxjs/operators";
+import {MatSnackBar, MatSnackBarRef} from "@angular/material";
+import {Router} from "@angular/router";
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private _admin: AdminService) {}
+  private snackbarRef;
+
+  constructor(
+    private _admin: AdminService,
+    private router: Router,
+    public snackBar: MatSnackBar
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
@@ -25,18 +35,25 @@ export class TokenInterceptor implements HttpInterceptor {
     });
 
     // send cloned request with header to the next handler.
-    console.log(authReq);
-    return next.handle(authReq);
-
-                                // CATCHING ERROR IN SUBSCRIBE INSTEAD
-      // .pipe(tap((event: HttpEvent<any>) => {
-      //     if (event){
-      //       console.log('Token interceptor event', event);
-      //     };
-      // }, err => {
-      //   if (err instanceof HttpErrorResponse) {
-      //     console.log('token interceptor error', err);
-      //   }
-      // }));
+    return next.handle(authReq)
+     .pipe(tap((event: HttpEvent<any>) => {}, err => {
+        if (err instanceof HttpErrorResponse) {
+          this.errorHandler(err);
+        }
+      }));
   }
+
+  errorHandler(error){
+    switch (error.status) {
+      case 401:
+        let snackbarRef = this.snackBar.open(
+          'Your session has expired. Please, login again to continue',
+          'Ok').afterDismissed().subscribe(()=>{
+            this._admin.socialSignOut();
+            this.router.navigate(['/login']);
+        });
+        break;
+    }
+  }
+
 }
