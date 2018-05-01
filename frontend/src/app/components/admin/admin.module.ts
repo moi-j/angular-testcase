@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { MaterialModule } from "../../modules/material.module";
-import { UsersListComponent } from "../users-list/users-list.component";
 import { UserFormComponent } from './user-form/user-form.component';
 import { MatDialogModule } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
+import {SharedModule} from "../../modules/shared.module";
 
 @NgModule({
   imports: [
@@ -16,10 +16,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     AdminRoutingModule,
     MaterialModule,
     MatDialogModule,
+    SharedModule
   ],
   declarations: [
     AdminComponent,
-    UsersListComponent,
     UserFormComponent
   ],
   entryComponents: [

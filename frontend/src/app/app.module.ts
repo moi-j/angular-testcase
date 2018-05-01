@@ -20,6 +20,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HomeComponent } from './components/home/home.component';
 import { ConfirmationDialogComponent } from './components/users-list/confirmation-dialog/confirmation-dialog.component';
 import {UsersListComponent} from "./components/users-list/users-list.component";
+import {CommonModule} from "@angular/common";
+import {SharedModule} from "./modules/shared.module";
 
 // Configs
 export function getAuthServiceConfigs() {
@@ -41,13 +43,13 @@ export function getAuthServiceConfigs() {
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    MenuModule
+    MenuModule,
+    SharedModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     ConfirmationDialogComponent,
-    UsersListComponent
   ],
   providers: [
     {
