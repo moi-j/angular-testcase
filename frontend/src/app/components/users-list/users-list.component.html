@@ -1,19 +1,6 @@
-<!--<button-->
-  <!--mat-button-->
-  <!--(click)="getUsers()"-->
-<!--&gt;-->
-  <!--Prueba-->
-<!--</button>-->
 <div class="example-container mat-elevation-z8">
-
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <mat-table #table [dataSource]="dataSource">
-
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
-
     <!-- First Name Column -->
     <ng-container matColumnDef="first_name">
       <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
@@ -24,6 +11,24 @@
     <ng-container matColumnDef="last_name">
       <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.last_name}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <ng-container *ngIf="onlyOwn">
+          <button mat-icon-button (click)="editUser(element)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteUser(element)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
 
