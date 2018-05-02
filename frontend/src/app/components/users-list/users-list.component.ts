@@ -112,6 +112,15 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   setRowPosition(e){
-    this.topPosition = (this.renderer.parentNode(e.target).closest('button')) ? this.renderer.parentNode(e.target).closest('button').getBoundingClientRect().top + 'px' : e.srcElement.getBoundingClientRect().top + 'px';
+    this.topPosition = this.getButtonTopPosition(e) + 'px';
+  }
+
+  getButtonTopPosition(e){
+    let buttonParent = this.renderer.parentNode(e.target).closest('button');
+    if ( buttonParent ) {
+      return buttonParent.getBoundingClientRect().top;
+    } else {
+      return e.srcElement.getBoundingClientRect().top;
+    }
   }
 }
