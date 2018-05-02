@@ -1,9 +1,13 @@
 @import "~_variables.scss";
 
-.error-messages {
+.error-messages .server-error {
   color: $warn;
   font-size: 0.7em;
   font-weight: lighter;
+
+  ul {
+    list-style: none;
+  }
 }
 
 mat-form-field {

@@ -28,7 +28,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<UserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User,
-  ) {
+  ){
     this.createForm();
     if(user){
       this.isUpdating = true;
@@ -40,9 +40,9 @@ export class UserFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit(){}
 
-  createForm() {
+  createForm(){
     this.userForm = new FormGroup({
       'first_name': new FormControl('', [
         Validators.required,
@@ -64,32 +64,68 @@ export class UserFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  get first_name() {
+  get first_name(){
     return this.userForm.get('first_name');
   }
 
-  get last_name() {
+  get last_name(){
     return this.userForm.get('last_name');
   }
 
-  get iban() {
+  get iban(){
     return this.userForm.get('iban');
   }
 
-  onSubmit() {
+  onSubmit(){
     if (this.userForm.valid){
-      this.isLoading = true;
-      this.user = this.userForm.value;
-      this._user.createUser(this.user).pipe(takeUntil(this.destroy$)).subscribe( newUser => {
-        this.isLoading = false;
-        this.dialogRef.close(newUser);
-      }, err => {
-        this.isLoading = false;
-        (err.error) ? this.errorHandler(err.error) : false;
-      });
+      (!this.isUpdating) ? this.createUser() : this.updateUser();
     } else {
       console.log('invalid');
     }
+  }
+
+  createUser(){
+    this.isLoading = true;
+    this.user = this.userForm.value;
+    this._user.createUser(this.user).pipe(takeUntil(this.destroy$)).subscribe( newUser => {
+      this.stopLoadingAndCloseDialog(newUser);
+    }, err => {
+      this.stopLoadingAndHandleError(err);
+    });
+  }
+
+  updateUser(){
+    let newUser = this.userForm.getRawValue();
+    if(this.somethingHasChange(newUser)){
+      console.log('change');
+      this.isLoading = true;
+      this._user.updateUser(this.user).pipe(takeUntil(this.destroy$)).subscribe( () => {
+        this.stopLoadingAndCloseDialog();
+      }, err => {
+        this.stopLoadingAndHandleError(err);
+      });
+    }
+  }
+
+  somethingHasChange(newUser: User){
+    let somethingChange;
+    for(let prop in newUser){
+      if(newUser[prop] !== this.user[prop]){
+        this.user[prop] = newUser[prop];
+        somethingChange = true;
+      }
+    }
+    return (somethingChange);
+  }
+
+  stopLoadingAndCloseDialog(user: User = null){
+    this.isLoading = false;
+    this.dialogRef.close(user);
+  }
+
+  stopLoadingAndHandleError(err){
+    this.isLoading = false;
+    (err.error) ? this.errorHandler(err.error) : false;
   }
 
   errorHandler(error){
@@ -101,7 +137,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.hasServerErrors = true;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(){
     this.destroy$.next();
     this.destroy$.complete();
   }

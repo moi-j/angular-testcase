@@ -7,7 +7,7 @@
   </h3>
 </ng-template>
 
-<div *ngIf="serverErrorTypes">
+<div *ngIf="serverErrorTypes" id="server-error">
   <ng-container *ngFor="let errorType of serverErrorTypes">
     <ul>
       <li>{{errorType}}</li>
@@ -94,7 +94,7 @@
 
 </form>
 
-<div class="formRow">
+<div class="formRow" fxLayoutAlign="center center" >
   <button mat-icon-button [disabled]="!userForm.valid" (click)="onSubmit()">
     <mat-icon>save</mat-icon>
   </button>
