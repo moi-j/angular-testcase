@@ -57,16 +57,21 @@ export class UsersListComponent implements OnInit, OnDestroy {
   getData(){
     this.isLoading = true;
     this._user.getUsers().pipe(takeUntil(this.destroy$)).subscribe( users => {
+      users = (this.onlyOwn) ? this.filterData(users) : users;
+      this.setTableData(users);
       this.numberOfUsers = users.length;
-      this.setAndFilterTableData(users);
       this.isLoading = false;
     }, err => {
       console.log(err);
     });
   }
 
-  setAndFilterTableData(users){
-    this.dataSource = (this.onlyOwn) ? new MatTableDataSource(users.filter(user => (user.own))) : new MatTableDataSource(users);
+  filterData(users){
+    return users.filter(user => (user.own));
+  }
+
+  setTableData(users){
+    this.dataSource = (this.onlyOwn) ? new MatTableDataSource(users) : new MatTableDataSource(users);
   }
 
   refresh(){
