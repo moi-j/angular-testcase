@@ -1,0 +1,22 @@
+@import "~_variables.scss";
+
+#iban-row {
+  //background-color: #EEE;
+  background-color: $accent;
+  height: $button-size;
+  position: absolute !important;
+  padding: 0 $padding;
+  width: $fullwidth;
+  max-width: 950px;
+  color: $font-color-light;
+}
+
+#iban-row.visible {
+  transition: top 0.5s ease-in-out;
+}
+
+@media (max-width: 599px) {
+  button {
+    width: $small-button-width;
+  }
+}

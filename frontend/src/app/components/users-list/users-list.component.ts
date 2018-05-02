@@ -2,7 +2,7 @@ import {
   Component,
   Input,
   OnDestroy,
-  OnInit,
+  OnInit, Renderer2,
 } from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {User} from "../../interfaces/user";
@@ -11,11 +11,20 @@ import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs/Subject";
 import {UserFormComponent} from "../admin/user-form/user-form.component";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
+import {style, trigger, state, transition, animate} from "@angular/animations";
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('hidden', style({ transform: 'translateX(-200%)'})),
+      state('visible', style({ transform: 'translateX(0)'})),
+      transition('hidden => visible', animate('300ms ease-in')),
+      transition('visible => hidden', animate('300ms ease-out')),
+    ])
+  ]
 })
 export class UsersListComponent implements OnInit, OnDestroy {
 
@@ -26,12 +35,18 @@ export class UsersListComponent implements OnInit, OnDestroy {
   displayedColumns = ['first_name', 'last_name', 'actions'];
   dataSource;
 
+  public ibanState = 'hidden';
+  public selectedIban: string;
+  public ibanClass = 'hidden';
+  public topPosition: string;
+
   private destroy$ = new Subject<void>();
 
   constructor(
     private _user: UserService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private renderer: Renderer2
   ) {
     this.getData();
   }
@@ -85,5 +100,18 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.dialog.closeAll();
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  setRowClass(){
+    this.ibanClass = this.ibanState
+  }
+
+  setVisibleIban(user: User) {
+    this.ibanState = 'visible';
+    this.selectedIban = user.iban;
+  }
+
+  setRowPosition(e){
+    this.topPosition = (this.renderer.parentNode(e.target).closest('button')) ? this.renderer.parentNode(e.target).closest('button').getBoundingClientRect().top + 'px' : e.srcElement.getBoundingClientRect().top + 'px';
   }
 }

@@ -1,4 +1,4 @@
-<div class="example-container mat-elevation-z8">
+<div class="mat-elevation-z8">
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <mat-table #table [dataSource]="dataSource">
     <!-- First Name Column -->
@@ -13,14 +13,20 @@
       <mat-cell *matCellDef="let element"> {{element.last_name}} </mat-cell>
     </ng-container>
 
+    <!-- Iban Column -->
+    <ng-container matColumnDef="iban">
+      <mat-header-cell *matHeaderCellDef > Iban </mat-header-cell>
+      <mat-cell *matCellDef="let element" > {{element.iban}} </mat-cell>
+    </ng-container>
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <button mat-icon-button>
+      <mat-cell *matCellDef="let element" >
+        <button mat-icon-button (click)="setRowPosition($event); setVisibleIban(element)">
           <mat-icon>visibility</mat-icon>
         </button>
-        <ng-container *ngIf="onlyOwn">
+        <ng-container *ngIf="onlyOwn" >
           <button mat-icon-button (click)="editUser(element)">
             <mat-icon>create</mat-icon>
           </button>
@@ -35,4 +41,16 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+</div>
+
+<div
+  id="iban-row"
+  fxLayoutAlign="center center"
+  [ngStyle]="{'top': topPosition}"
+  [@flyInOut]="{ value: ibanState}"
+  (@flyInOut.done)="setRowClass()"
+  class="{{ibanClass}}"
+>
+  <div>{{selectedIban}}</div>
+  <button mat-icon-button (click)="ibanState = 'hidden'"><mat-icon>close</mat-icon></button>
 </div>
