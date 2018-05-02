@@ -18,10 +18,6 @@ export class UserService {
     return this.http.get<User[]>( apiUrl );
   }
 
-  public getUser( user: User ) {
-    return this.http.get<User>( `${apiUrl}/${user.id}` );
-  }
-
   public createUser( user: User) {
     return this.http.post<User>( apiUrl, user );
   }
