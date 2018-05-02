@@ -48,9 +48,10 @@ export class TokenInterceptor implements HttpInterceptor {
       case 401:
         this.snackBar.open(
           'Your session has expired. Please, login again to continue',
-          'Ok').afterDismissed().subscribe(()=>{
-            this._admin.socialSignOut();
-            this.router.navigate(['/login']);
+          'Ok',
+          {duration: 2000}
+          ).afterDismissed().subscribe(()=>{
+          this._admin.socialSignOut();
         });
         break;
     }
