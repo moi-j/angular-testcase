@@ -1,7 +1,9 @@
+@import "~_variables.scss";
+
 button img {
   width: 20px;
   height: 20px;
 }
 div.mat-container {
-  padding-top: 40px;
+  padding-top: $padding*2;
 }

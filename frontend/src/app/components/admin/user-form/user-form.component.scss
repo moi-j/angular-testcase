@@ -1,5 +1,11 @@
+@import "~_variables.scss";
+
 .error-messages {
-  color: red;
+  color: $warn;
   font-size: 0.7em;
   font-weight: lighter;
+}
+
+mat-form-field {
+  width: $fullwidth;
 }
