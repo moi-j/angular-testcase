@@ -92,14 +92,14 @@
     </div>
   </div>
 
-
-  <div class="formRow">
-    <button mat-icon-button [disabled]="!userForm.valid" (click)="onSubmit()">
-      <mat-icon>save</mat-icon>
-    </button>
-    <button mat-icon-button (click)="dialogRef.close()">
-      <mat-icon>cancel</mat-icon>
-    </button>
-    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-  </div>
 </form>
+
+<div class="formRow">
+  <button mat-icon-button [disabled]="!userForm.valid" (click)="onSubmit()">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-icon-button (click)="dialogRef.close()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+</div>
