@@ -1,4 +1,7 @@
-<div class="row" fxLayoutAlign="end center">
+<div class="row" fxLayoutAlign="space-between center">
+  <span *ngIf="userList.numberOfUsers == 0" id="no-users-message">
+    You have not added any user yet
+  </span>
   <button mat-button (click)="openDialog()">
     <span>Add new user</span>
     <mat-icon>
