@@ -1,0 +1,21 @@
+// Importing material theming functions
+@import '~@angular/material/theming';
+
+// Palettes from your selected theme (usually theme.scss).
+$app-primary: mat-palette($mat-indigo);
+$app-accent:  mat-palette($mat-pink);
+$app-warn:    mat-palette($mat-cyan);
+
+// Colors
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
+
+$font-color-light: mat-color($mat-blue-grey, 50);
+
+// Sizes
+$button-size: 40px;
+$small-button-width: 27px;
+$padding: 20px;
+$fullwidth: 100%;
+$image-icon-size: 41px;
