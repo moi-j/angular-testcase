@@ -8,7 +8,7 @@ import {UserService} from "../../services/user.service";
 import {User} from "../../interfaces/user";
 import {MatDialog, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs/Subject";
+import {Subject} from "rxjs";
 import {UserFormComponent} from "../admin/user-form/user-form.component";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
 import {style, trigger, state, transition, animate} from "@angular/animations";

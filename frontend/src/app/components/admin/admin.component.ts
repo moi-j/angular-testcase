@@ -6,7 +6,7 @@ import { User } from "../../interfaces/user";
 
 import { UserFormComponent } from "./user-form/user-form.component";
 import { UsersListComponent } from "../users-list/users-list.component";
-import {Subject} from "rxjs/Subject";
+import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 
 @Component({

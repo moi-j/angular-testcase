@@ -5,7 +5,7 @@ import { User } from "../../../interfaces/user";
 import { ibanValidator } from './validators/iban.directive';
 import { lettersValidator } from "./validators/letters.directive";
 import { UserService } from "../../../services/user.service";
-import {Subject} from "rxjs/Subject";
+import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 
 @Component({
