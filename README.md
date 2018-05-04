@@ -55,6 +55,8 @@ Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+Make sure you are using [Node 8 or later](http://www.hostingadvice.com/how-to/update-node-js-latest-version/)
+
 ## Development Frontend server
 Under `/frontend` run `npm install` and It will install all required dependencies for the project.
 Once installed run `npm serve` and server will be running in `http://localhost:9000`. You can also run `ng serve --port 9000` and will get the same result. 
