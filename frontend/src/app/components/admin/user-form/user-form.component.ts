@@ -6,14 +6,14 @@ import { ibanValidator } from './validators/iban.directive';
 import { lettersValidator } from "./validators/letters.directive";
 import { UserService } from "../../../services/user.service";
 import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {takeUntil} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent implements OnInit, OnDestroy {
+export class UserFormComponent implements OnDestroy {
 
   private destroy$ = new Subject<void>();
   public userForm: FormGroup;
@@ -25,7 +25,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private _user: UserService,
-    private fb: FormBuilder,
     public dialogRef: MatDialogRef<UserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User,
   ){
@@ -39,8 +38,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-  ngOnInit(){}
 
   createForm(){
     this.userForm = new FormGroup({
@@ -59,7 +56,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
         Validators.minLength(15),
         Validators.maxLength(32),
         ibanValidator(),
-        // ibanLengthValidator(),
       ])
     });
   }

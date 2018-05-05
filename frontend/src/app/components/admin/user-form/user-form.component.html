@@ -1,6 +1,4 @@
-<h3 *ngIf="!isUpdating; else updating">
-  Fill the form to create a new user
-</h3>
+<h3 *ngIf="!isUpdating; else updating">Fill the form to create a new user</h3>
 <ng-template #updating>
   <h3>
     You are updating user {{user.first_name}}

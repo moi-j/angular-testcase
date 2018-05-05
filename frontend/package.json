@@ -27,7 +27,6 @@
     "angular5-social-login": "^1.0.9",
     "core-js": "^2.4.1",
     "rxjs": "^6.1.0",
-    // Required for flex-layout and social-login
     "rxjs-compat": "^6.1.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"
