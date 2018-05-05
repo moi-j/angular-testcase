@@ -11,3 +11,4 @@ staticfiles
 /*.log
 bootstrap-salt.sh
 frontend/src/app/interfaces/users.mok.ts
+frontend/debug.log
