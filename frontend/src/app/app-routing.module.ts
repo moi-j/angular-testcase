@@ -24,7 +24,7 @@ const appRoutes: Routes = [
       AuthGuard
     ]
   },
-  { path: '**', component: AppComponent }
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
