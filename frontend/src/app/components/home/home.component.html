@@ -3,7 +3,7 @@
    Showing {{userList.numberOfUsers}} users
  </p>
 </div>
-<app-users-list [onlyOwn]="false"></app-users-list>
+<app-users-list [forOwners]="false"></app-users-list>
 
 <ng-template #noUsers>
   <div fxLayoutAlign="center center" *ngIf="!userList.isLoading">
