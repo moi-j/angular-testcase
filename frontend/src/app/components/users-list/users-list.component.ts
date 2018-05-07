@@ -28,7 +28,7 @@ import {style, trigger, state, transition, animate} from "@angular/animations";
 })
 export class UsersListComponent implements OnInit, OnDestroy {
 
-  @Input() onlyOwn: boolean;
+  @Input() forOwners: boolean;
 
   public isLoading: boolean;
   public numberOfUsers:number;
@@ -57,7 +57,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   getData(){
     this.isLoading = true;
     this._user.getUsers().pipe(takeUntil(this.destroy$)).subscribe( users => {
-      users = (this.onlyOwn) ? this.filterData(users) : users;
+      users = (this.forOwners) ? this.filterData(users) : users;
       this.setTableData(users);
       this.numberOfUsers = users.length;
       this.isLoading = false;
@@ -71,7 +71,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   setTableData(users){
-    this.dataSource = (this.onlyOwn) ? new MatTableDataSource(users) : new MatTableDataSource(users);
+    this.dataSource = (this.forOwners) ? new MatTableDataSource(users) : new MatTableDataSource(users);
   }
 
   refresh(){
