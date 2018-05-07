@@ -11,7 +11,6 @@ export class DesktopMenuComponent implements OnInit {
 
   @Input() userAdmin: SocialUser;
 
-  @Output() onSignIn = new EventEmitter();
   @Output() onSignOut = new EventEmitter();
 
   constructor() {}
